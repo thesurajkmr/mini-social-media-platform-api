@@ -21,6 +21,7 @@ public class TodoServiceImpl implements TodoService{
 
     @Override
     public List<TodoItem> findAll() {
+
         return todoRepository.findAll();
     }
 
@@ -45,4 +46,6 @@ public class TodoServiceImpl implements TodoService{
         }
         return theTodo;
     }
+
+
 }

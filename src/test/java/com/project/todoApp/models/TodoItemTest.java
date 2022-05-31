@@ -18,4 +18,38 @@ public class TodoItemTest {
         Assertions.assertFalse(itemA.equals(itemB));
         Assertions.assertFalse(itemA.equals(nonObject));
     }
+
+    @Test
+    public void testGettersSettersId()
+    {
+        final TodoItem itemA=new TodoItem();
+        itemA.setId(67L);
+        Assertions.assertEquals(67L,itemA.getId());
+    }
+
+    @Test
+    public void testGettersSettersDone()
+    {
+        final TodoItem itemA=new TodoItem();
+        itemA.setDone(true);
+        Assertions.assertEquals(true,itemA.isDone());
+    }
+
+    @Test
+    public void testGettersSettersTitle()
+    {
+        final TodoItem itemA=new TodoItem();
+        itemA.setId(23L);
+        itemA.setTitle("New");
+        Assertions.assertEquals("New",itemA.getTitle());
+    }
+
+    @Test
+    public void testGettersSettersDescription()
+    {
+        final TodoItem itemA=new TodoItem();
+        itemA.setId(23L);
+        itemA.setDescription("Complete");
+        Assertions.assertEquals("Complete",itemA.getDescription());
+    }
 }

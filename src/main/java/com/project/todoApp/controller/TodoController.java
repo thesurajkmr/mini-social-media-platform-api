@@ -37,7 +37,6 @@ public class TodoController {
 //        create model attribute to bind data
         TodoItem theTodoItem=new TodoItem();
         theTodoItem.setId(0);
-        System.out.println(theTodoItem);
         theModel.addAttribute("todo",theTodoItem);
         return "todo-form";
     }

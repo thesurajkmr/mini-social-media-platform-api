@@ -24,6 +24,7 @@ import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 //@RunWith(SpringJUnit4ClassRunner.class)
@@ -42,6 +43,12 @@ class TodoAppApplicationTests {
 //    @Autowired
     @MockBean
     private TodoService todoServiceMock;
+
+    static final long MOCK_ID = 1;
+    static final String MOCK_TITLE = "Mock Item";
+    static final String MOCK_DESC = "Description of mock item";
+    final TodoItem mockItemA = new TodoItem(MOCK_ID, MOCK_TITLE + "-A", MOCK_DESC + "-A",false);
+    final TodoItem mockItemB = new TodoItem(MOCK_ID, MOCK_TITLE + "-B", MOCK_DESC + "-B",false);
 
     @Test
     public void findAll_ShouldAddToDoEntriesToTheModelAndRenderToDoListView() throws Exception{
@@ -91,7 +98,7 @@ class TodoAppApplicationTests {
 
 //    @Test
 //    public void clickingTheAddButtonToAddNotes_andCheckingWhetherTheFormGetsFilled() throws Exception {
-//        String title = "Play";
+//        String title = String.valueOf("Play");
 //        String description = "Complete by Evening";
 //
 //        mockMvc.perform(post("/todo/showFormForAdd")
@@ -103,4 +110,17 @@ class TodoAppApplicationTests {
 //                .andExpect(status().isOk());
 //
 //    }
+        @Test
+        public void shouldRenderDefaultTemplate() throws Exception {
+            mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk()).andExpect(forwardedUrl("index.html"));
+        }
+//    @Test
+//    public void canGetTodoItem() throws Exception {
+//        mockMvc.perform(get(String.format("/todo/list", mockItemA.getId()))).andDo(print())
+//                .andExpect(status().isOk())
+//                .andExpect(content().json(String.format("{\"id\":\"%s\",\"description\":\"%s\",\"title\":\"%s\"}",
+//                        mockItemA.getId(), mockItemA.getDescription(), mockItemA.getTitle())));
+//    }
+
+
 }
