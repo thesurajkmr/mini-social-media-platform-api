@@ -21,7 +21,7 @@ public class TodoServiceImpl implements TodoService{
 
     @Override
     public List<TodoItem> findAll() {
-
+        System.out.println("inside find all");
         return todoRepository.findAll();
     }
 
