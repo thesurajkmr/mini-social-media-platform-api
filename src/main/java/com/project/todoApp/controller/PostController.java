@@ -9,6 +9,8 @@ import com.project.todoApp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -54,6 +56,9 @@ public class PostController {
             return "No such user found";
         }
         post.setUser(userRepository.findById(theUser.getId()).get());
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        System.out.println(LocalDateTime.now());
+        post.setTimeStamp(LocalDateTime.now());
         postRepository.save(post);
 
         return "post saved to user with id " + theUser.getId();

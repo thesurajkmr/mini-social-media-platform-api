@@ -4,7 +4,11 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.time.DateTimeException;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 
 @Data
@@ -22,5 +26,5 @@ public class Posts {
 
     User user;
 
-
+    LocalDateTime timeStamp;
 }

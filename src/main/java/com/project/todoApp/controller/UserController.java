@@ -6,10 +6,12 @@ import com.project.todoApp.models.User;
 import com.project.todoApp.repository.GroupRepository;
 import com.project.todoApp.repository.PostRepository;
 import com.project.todoApp.repository.UserRepository;
+import java.util.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -42,9 +44,12 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    @GetMapping("/getFeed")
-    public List<Posts> generateFeed(@RequestBody User theUser){
-        return postRepository.findByUser(theUser);
+    @GetMapping("/getFeed/{id}")
+    public List<Posts> generateFeed(@PathVariable int id){
+        Optional<User> theUser=userRepository.findById(id);
+        if(theUser.isEmpty()) return Collections.emptyList();
+        User user=theUser.get();
+        return postRepository.findByUserOrderByTimeStampDesc(user);
     }
 
 }

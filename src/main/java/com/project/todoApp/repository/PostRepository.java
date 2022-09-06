@@ -10,8 +10,9 @@ import java.util.List;
 
 public interface PostRepository extends MongoRepository<Posts, Integer> {
 
-    @Query(value="select* from posts where len(description) > 21")
-    List<Posts> findAllPostsById(@Param("id") int id);
 
     List<Posts> findByUser(User theUser);
+
+
+    List<Posts> findByUserOrderByTimeStampDesc(User theUser);
 }
