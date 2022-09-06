@@ -80,4 +80,24 @@ public class GroupController {
         return output;
     }*/
 
+
+    @PutMapping("/leaveGroup/{groupId}")
+    public String leaveGroup(@PathVariable int groupId, @RequestBody User theUser)
+    {
+        if(!groupRepository.findById(groupId).isPresent()){
+            return "No such group exists";
+        }
+        Group theGroup=groupRepository.findById(groupId).get();
+        for (User currentUser:theGroup.getUserList()
+             ) {
+            if(currentUser.getId()==theUser.getId()){
+                theGroup.getUserList().remove(currentUser);
+                break;
+            }
+        }
+        System.out.println(theGroup);
+        groupRepository.save(theGroup);
+        return "User with User id "+ theUser.getId()+" removed from group with group id "+theGroup.getId();
+    }
+
 }

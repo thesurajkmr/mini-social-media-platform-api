@@ -17,32 +17,48 @@ import java.util.Optional;
 @RequestMapping("/posts")
 public class PostController {
 
-    /*@Autowired
-    PostRepository postRepository;
-
     @Autowired
-    GroupRepository groupRepository;
+    PostRepository postRepository;
 
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    GroupRepository groupRepository;
+
     @GetMapping("/getAllPosts")
     public List<Posts> getAllPosts(){
         List<Posts> posts = postRepository.findAll();
-        List<Posts> output=new ArrayList<>();
+/*        List<Posts> output=new ArrayList<>();
         for (Posts post:posts
         ) {
             if(post.getDescription()==null){
                 continue;
             }
             output.add(post);
-        }
-        return output;
+        }*/
+        return posts;
     }
 
-    @PostMapping("/addPosts")
-    public String addPosts(@RequestBody Posts post){
-        int groupId=post.getGroupId();
+
+
+
+    @PostMapping("/addPosts/{id}")
+    public String addPosts(@RequestBody Posts post, @PathVariable int id){
+        if(!groupRepository.findById(id).isPresent()){
+            return "No such Group found";
+        }
+        User theUser=post.getUser();
+        if(!userRepository.findById(theUser.getId()).isPresent())
+        {
+            return "No such user found";
+        }
+
+        postRepository.save(post);
+
+        return "post saved to user with id " + theUser.getId();
+
+       /* int groupId=post.getGroupId();
         int userId=post.getUserId();
 
         boolean isGroupIdPresent=false;
@@ -73,19 +89,19 @@ public class PostController {
         User user=userRepository.findById(post.getUserId()).get();
 
 
-*//*
+
         System.out.println(user);
-        User(id=1, name=Suraj, gender=male, groups=[Group(id=2, title=Dav Kalinga), Group(id=3, title=Kanhan Valley)], posts=null)
+        *//*User(id=1, name=Suraj, gender=male, groups=[Group(id=2, title=Dav Kalinga), Group(id=3, title=Kanhan Valley)], posts=null)
         The correct user id is getting fetched from the database, but while operating
         on it gives an error and the earlier data that is the upper one is not
-        getting updated with the post value that is added to it.
- *//*
+        getting updated with the post value that is added to it.*//*
+
 
         user.addPosts(post);
         userRepository.save(user);
-        return "post added with id :" + user.getId();
+        return "post added with id :" + user.getId();*/
 
     }
-*/
+
 
 }
