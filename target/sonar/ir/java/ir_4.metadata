@@ -1,0 +1,3 @@
+com.project.todoApp.controller.TodoController#showFormForTodo(Lorg/springframework/ui/Model;)Ljava/lang/String;
+com.project.todoApp.entity.TodoItem#instance-init#
+com.project.todoApp.entity.TodoItem#<init>()V

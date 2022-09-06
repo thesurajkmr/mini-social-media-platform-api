@@ -1,0 +1,6 @@
+/home/surak/IdeaProjects/spring-boot/todoApp/src/main/java/com/project/todoApp/TodoAppApplication.java
+/home/surak/IdeaProjects/spring-boot/todoApp/src/main/java/com/project/todoApp/dao/TodoRepository.java
+/home/surak/IdeaProjects/spring-boot/todoApp/src/main/java/com/project/todoApp/controller/TodoController.java
+/home/surak/IdeaProjects/spring-boot/todoApp/src/main/java/com/project/todoApp/service/TodoServiceImpl.java
+/home/surak/IdeaProjects/spring-boot/todoApp/src/main/java/com/project/todoApp/service/TodoService.java
+/home/surak/IdeaProjects/spring-boot/todoApp/src/main/java/com/project/todoApp/entity/TodoItem.java

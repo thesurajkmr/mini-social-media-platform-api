@@ -1,0 +1,16 @@
+
+@com.project.todoApp.entity.TodoItem#getTitle()Ljava/lang/String;m
+c/home/surak/IdeaProjects/spring-boot/todoApp/src/main/java/com/project/todoApp/entity/TodoItem.java0 0("1*Å
+1m
+c/home/surak/IdeaProjects/spring-boot/todoApp/src/main/java/com/project/todoApp/entity/TodoItem.java1 1(Ä
+Á
+m
+c/home/surak/IdeaProjects/spring-boot/todoApp/src/main/java/com/project/todoApp/entity/TodoItem.java1 1(
+%0java.lang.String"__id*2*0%
+#com.project.todoApp.entity.TodoItem"
+title"‰
+m
+c/home/surak/IdeaProjects/spring-boot/todoApp/src/main/java/com/project/todoApp/entity/TodoItem.java1 1(
+
+%0java.lang.StringB'%
+#com.project.todoApp.entity.TodoItem

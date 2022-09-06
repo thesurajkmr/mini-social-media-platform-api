@@ -1,0 +1,24 @@
+
+Xcom.project.todoApp.controller.TodoController#delete(Ljava/lang/Long;)Ljava/lang/String;w
+m/home/surak/IdeaProjects/spring-boot/todoApp/src/main/java/com/project/todoApp/controller/TodoController.javaA A("1*Å
+1w
+m/home/surak/IdeaProjects/spring-boot/todoApp/src/main/java/com/project/todoApp/controller/TodoController.javaC C(õ
+ò
+w
+m/home/surak/IdeaProjects/spring-boot/todoApp/src/main/java/com/project/todoApp/controller/TodoController.javaC C(-
+%0'com.project.todoApp.service.TodoService"__id*B*@/
+-com.project.todoApp.controller.TodoController"
+todoService¹¶
+w
+m/home/surak/IdeaProjects/spring-boot/todoApp/src/main/java/com/project/todoApp/controller/TodoController.javaC C(%
+
+%1void"Ecom.project.todoApp.service.TodoService#deleteById(Ljava/lang/Long;)V*/
+-
+%0'com.project.todoApp.service.TodoService*
+
+theIdjava.lang.Long2deleteById(Ljava/lang/Long;)"’
+w
+m/home/surak/IdeaProjects/spring-boot/todoApp/src/main/java/com/project/todoApp/controller/TodoController.javaE E(%
+redirect:/todo/list:
+theIdjava.lang.LongB1/
+-com.project.todoApp.controller.TodoController

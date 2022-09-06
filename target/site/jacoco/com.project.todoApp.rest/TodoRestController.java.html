@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TodoRestController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">todoApp</a> &gt; <a href="index.source.html" class="el_package">com.project.todoApp.rest</a> &gt; <span class="el_source">TodoRestController.java</span></div><h1>TodoRestController.java</h1><pre class="source lang-java linenums">package com.project.todoApp.rest;
+
+import com.project.todoApp.entity.TodoItem;
+import com.project.todoApp.service.TodoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping(&quot;/api&quot;)
+public class TodoRestController {
+    private TodoService todoService;
+
+    @Autowired
+<span class="fc" id="L16">    public TodoRestController(TodoService todoService) {</span>
+<span class="fc" id="L17">        this.todoService = todoService;</span>
+<span class="fc" id="L18">    }</span>
+
+    //    expose &quot;/todos&quot; and return list of todos
+    @GetMapping(&quot;/list&quot;)
+    public List&lt;TodoItem&gt; findAll(){
+<span class="nc" id="L23">        return todoService.findAll();</span>
+    }
+
+//    add mapping for get /list/{todoid}
+    @GetMapping(&quot;/list/{todoId}&quot;)
+    public TodoItem getTodo(@PathVariable Long todoId){
+<span class="nc" id="L29">        TodoItem theTodo=todoService.findById(todoId);</span>
+<span class="nc bnc" id="L30" title="All 2 branches missed.">        if(theTodo==null){</span>
+<span class="nc" id="L31">            throw new RuntimeException(&quot;ToDo id not found -&quot;+todoId);</span>
+        }
+<span class="nc" id="L33">        return theTodo;</span>
+    }
+
+//    add mapping for POST /list - add new toDoItem
+    @PostMapping(&quot;/list&quot;)
+    public TodoItem addTodo(@RequestBody TodoItem theTodo){
+<span class="nc" id="L39">        theTodo.setId(0);</span>
+<span class="nc" id="L40">        todoService.save(theTodo);</span>
+<span class="nc" id="L41">        return theTodo;</span>
+    }
+
+//    add mapping for PUT/list - update an existing TodoItem
+    @PutMapping(&quot;/list&quot;)
+    public TodoItem updateTodo(@RequestBody TodoItem theTodo){
+<span class="nc" id="L47">        todoService.save(theTodo);</span>
+<span class="nc" id="L48">        return theTodo;</span>
+    }
+
+//    add mapping for DELETE /list/{todoId} -delete todoItem
+    @DeleteMapping(&quot;/list/{todoId}&quot;)
+    public String deleteTodo(@PathVariable Long todoId){
+<span class="nc" id="L54">        TodoItem theTodo=todoService.findById(todoId);</span>
+//        throw exception if null
+<span class="nc bnc" id="L56" title="All 2 branches missed.">        if(theTodo==null){</span>
+<span class="nc" id="L57">            throw new RuntimeException(&quot;Todo Id not found - &quot;+todoId);</span>
+        }
+<span class="nc" id="L59">        todoService.deleteById(todoId);</span>
+<span class="nc" id="L60">        return &quot;Deleted Todo with id :- &quot;+todoId;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
