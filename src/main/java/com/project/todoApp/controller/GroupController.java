@@ -81,9 +81,10 @@ public class GroupController {
     }*/
 
 
-    @PutMapping("/leaveGroup/{groupId}")
-    public String leaveGroup(@PathVariable int groupId, @RequestBody User theUser)
+    @PostMapping("/leaveGroup/{groupId}/{userId}")
+    public String leaveGroup(@PathVariable int groupId, @PathVariable int userId)
     {
+        User theUser=userRepository.findById(userId).get();
         if(!groupRepository.findById(groupId).isPresent()){
             return "No such group exists";
         }
@@ -95,9 +96,16 @@ public class GroupController {
                 break;
             }
         }
+        deleteGroup(groupId);
         System.out.println(theGroup);
         groupRepository.save(theGroup);
         return "User with User id "+ theUser.getId()+" removed from group with group id "+theGroup.getId();
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteGroup(@PathVariable int id){
+        Group theGroup=groupRepository.findById(id).get();
+        groupRepository.delete(theGroup);
     }
 
 }
