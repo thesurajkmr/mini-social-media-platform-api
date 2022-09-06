@@ -1,8 +1,10 @@
 package com.project.todoApp.controller;
 
 import com.project.todoApp.models.Group;
+import com.project.todoApp.models.Posts;
 import com.project.todoApp.models.User;
 import com.project.todoApp.repository.GroupRepository;
+import com.project.todoApp.repository.PostRepository;
 import com.project.todoApp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,9 @@ public class UserController {
 
     @Autowired
     private GroupRepository groupRepository;
+
+    @Autowired
+    private PostRepository postRepository;
 
     @PostMapping("/addUser")
     public String addUser(@RequestBody User user){
@@ -35,6 +40,11 @@ public class UserController {
     @GetMapping("/getAllUsers")
     public List<User> getAllUsers(){
         return userRepository.findAll();
+    }
+
+    @GetMapping("/getFeed")
+    public List<Posts> generateFeed(@RequestBody User theUser){
+        return postRepository.findByUser(theUser);
     }
 
 }

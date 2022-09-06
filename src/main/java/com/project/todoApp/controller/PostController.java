@@ -53,7 +53,7 @@ public class PostController {
         {
             return "No such user found";
         }
-
+        post.setUser(userRepository.findById(theUser.getId()).get());
         postRepository.save(post);
 
         return "post saved to user with id " + theUser.getId();
