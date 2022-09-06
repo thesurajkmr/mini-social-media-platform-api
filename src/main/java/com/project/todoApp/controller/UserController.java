@@ -21,14 +21,14 @@ public class UserController {
     @PostMapping("/addUser")
     public String addUser(@RequestBody User user){
         userRepository.save(user);
-        List<Group> groups=user.getGroups();
+        /*List<Group> groups=user.getGroups();
 
         if(groups!=null){
             for (Group group : groups
                  ) {
                 groupRepository.save(group);
             }
-        }
+        }*/
         return "User saved with id : " + user.getId();
     }
 

@@ -17,7 +17,7 @@ import java.util.Optional;
 @RequestMapping("/posts")
 public class PostController {
 
-    @Autowired
+    /*@Autowired
     PostRepository postRepository;
 
     @Autowired
@@ -73,19 +73,19 @@ public class PostController {
         User user=userRepository.findById(post.getUserId()).get();
 
 
-/*
+*//*
         System.out.println(user);
         User(id=1, name=Suraj, gender=male, groups=[Group(id=2, title=Dav Kalinga), Group(id=3, title=Kanhan Valley)], posts=null)
         The correct user id is getting fetched from the database, but while operating
         on it gives an error and the earlier data that is the upper one is not
         getting updated with the post value that is added to it.
- */
+ *//*
 
         user.addPosts(post);
         userRepository.save(user);
         return "post added with id :" + user.getId();
 
     }
-
+*/
 
 }

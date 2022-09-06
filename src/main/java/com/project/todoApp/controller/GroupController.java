@@ -2,14 +2,14 @@ package com.project.todoApp.controller;
 
 
 import com.project.todoApp.models.Group;
+import com.project.todoApp.models.User;
 import com.project.todoApp.repository.GroupRepository;
+import com.project.todoApp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.Map.Entry;
 
 @RestController
 @RequestMapping("/group")
@@ -18,7 +18,54 @@ public class GroupController {
     @Autowired
     GroupRepository groupRepository;
 
-    @GetMapping("/getAll")
+    @Autowired
+    UserRepository userRepository;
+
+    @PostMapping("/addGroup")
+    public String addGroup(@RequestBody Group theGroup){
+        Map<User,Boolean> theUserToBeRemoved= new HashMap<>();
+        /*for (User theUser:theGroup.getUserList()
+             ) {
+            if (userRepository.findById(theUser.getId()).isPresent())
+            {
+                continue;
+            }
+            else{
+                theUserToBeRemoved.put(theUser,true);
+            }
+        }
+        Iterator hmIterator = theUserToBeRemoved.entrySet().iterator();
+
+        while (hmIterator.hasNext()) {
+
+            Entry mapElement
+                    = (Entry)hmIterator.next();
+            theGroup.getUserList().remove(mapElement.getKey());
+
+        }*/
+        groupRepository.save(theGroup);
+        return "Group added with id "+theGroup.getId();
+    }
+
+    @PutMapping("/addUserToGroup/{id}")
+    public String addGroup(@PathVariable int id, @RequestBody User theUser){
+        Group grp=groupRepository.findById(id).get();
+        grp.addUser(theUser);
+        groupRepository.save(grp);
+        return "Group saved with id "+ id;
+    }
+
+    @GetMapping("/getAllGroups")
+    public List<Group> findAllGroups(){
+        return groupRepository.findAll();
+    }
+
+    @GetMapping("/getGroup/{id}")
+    public Group getGroupById(@PathVariable int id){
+        Optional<Group> group = groupRepository.findById(id);
+        return group.orElse(null);
+    }
+    /*@GetMapping("/getAll")
     public List<Group> getAllGroups()
     {
         List<Group> groups = groupRepository.findAll();
@@ -31,5 +78,6 @@ public class GroupController {
             output.add(group);
         }
         return output;
-    }
+    }*/
+
 }

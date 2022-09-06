@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection="social_db")
+@Document(collection="post_db")
 public class Posts {
 
     @Id
@@ -18,7 +18,5 @@ public class Posts {
 
     private String description;
 
-    private int groupId;
-
-    private int userId;
+    User user;
 }

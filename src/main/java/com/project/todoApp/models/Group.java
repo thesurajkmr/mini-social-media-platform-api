@@ -11,11 +11,17 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection="social_db")
+@Document(collection="group_db")
 public class Group {
 
     @Id
     private int id;
 
     private String title;
+
+    List<User> userList;
+
+    public void addUser(User theUser) {
+        userList.add(theUser);
+    }
 }
